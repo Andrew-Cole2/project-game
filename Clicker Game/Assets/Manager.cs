@@ -12,8 +12,16 @@ public class Manager : MonoBehaviour
 
     bool hasAutoClicker;
 
+    public int clickValue;
     public int autoClicksPerSecond;
     public int minimumClicksToUnlock;
+
+
+    public void AddClicks()
+    {
+        TotalClicks += clickValue;
+        ClicksTotalText.text = TotalClicks.ToString("0");
+    }
 
     public void AutoClickUpgrade()
     {
@@ -22,6 +30,25 @@ public class Manager : MonoBehaviour
             TotalClicks -= minimumClicksToUnlock;
             hasAutoClicker = true;
         }
+    }
+
+    public void UpgradeAutoClicker(int addClicks, Button btn)
+    {
+        if(hasAutoClicker)
+        {
+            autoClicksPerSecond += addClicks;
+        }
+    }
+
+    public void UpgradeClick(int upgradeMultiplier)
+    {
+        clickValue *= upgradeMultiplier;
+    }
+
+    private void Start()
+    {
+        clickValue = 1;
+        autoClicksPerSecond = 1;
     }
 
     private void Update()
@@ -41,12 +68,6 @@ public class Manager : MonoBehaviour
         {
             AutoClickerUpgrade.interactable = true;
         }
-    }
-
-    public  void AddClicks()
-    {
-        TotalClicks++;
-        ClicksTotalText.text = TotalClicks.ToString("0");
     }
 
 }
