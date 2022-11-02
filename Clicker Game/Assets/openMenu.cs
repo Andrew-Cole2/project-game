@@ -6,6 +6,8 @@ public class openMenu : MonoBehaviour
 {
     public GameObject Panel;
 
+    public float TotalClicks;
+
     private void Start()
     {
         Panel.SetActive(false);
